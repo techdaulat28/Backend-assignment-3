@@ -1,0 +1,308 @@
+{
+  "info": {
+    "_postman_id": "6e3a6d4d-5e5a-4d6e-8c8f-3f5b9b3c2a10",
+    "name": "Inventory Data Management System - Assignment 3",
+    "description": "Postman collection for all required Assignment 3 APIs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "productId",
+      "value": "REPLACE_WITH_CREATED_PRODUCT_ID"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health / API Root",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": [
+            "{{baseUrl}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Wireless Mouse\",\n  \"sku\": \"WM-1001\",\n  \"category\": \"Electronics\",\n  \"price\": 799,\n  \"stock\": 25,\n  \"lowStockThreshold\": 10,\n  \"supplier\": \"Tech Supplies Ltd\",\n  \"description\": \"2.4 GHz wireless mouse\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/products",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Products - Filter Sort Pagination",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/products?category=Electronics&minPrice=100&maxPrice=2000&sortBy=price&order=asc&page=1&limit=10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": [
+            {
+              "key": "category",
+              "value": "Electronics"
+            },
+            {
+              "key": "minPrice",
+              "value": "100"
+            },
+            {
+              "key": "maxPrice",
+              "value": "2000"
+            },
+            {
+              "key": "sortBy",
+              "value": "price"
+            },
+            {
+              "key": "order",
+              "value": "asc"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/products?search=mouse",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": [
+            {
+              "key": "search",
+              "value": "mouse"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Single Product",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/products/{{productId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "products",
+            "{{productId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Product",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": 749,\n  \"description\": \"Updated wireless mouse\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/products/{{productId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "products",
+            "{{productId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Restock Product",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"action\": \"restock\",\n  \"quantity\": 15\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/products/{{productId}}/stock",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "products",
+            "{{productId}}",
+            "stock"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Record Sale",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"action\": \"sale\",\n  \"quantity\": 5\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/products/{{productId}}/stock",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "products",
+            "{{productId}}",
+            "stock"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Low Stock Report",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/reports/low-stock",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "reports",
+            "low-stock"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Low Stock Report - Custom Threshold",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/reports/low-stock?threshold=15",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "reports",
+            "low-stock"
+          ],
+          "query": [
+            {
+              "key": "threshold",
+              "value": "15"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Category-wise Inventory Summary",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/reports/category-summary",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "reports",
+            "category-summary"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Product",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/products/{{productId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "products",
+            "{{productId}}"
+          ]
+        }
+      }
+    }
+  ]
+}

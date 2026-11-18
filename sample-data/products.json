@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Wireless Mouse",
+    "sku": "WM-1001",
+    "category": "Electronics",
+    "price": 799,
+    "stock": 25,
+    "lowStockThreshold": 10,
+    "supplier": "Tech Supplies Ltd",
+    "description": "2.4 GHz wireless mouse"
+  },
+  {
+    "name": "Mechanical Keyboard",
+    "sku": "KB-2001",
+    "category": "Electronics",
+    "price": 2499,
+    "stock": 8,
+    "lowStockThreshold": 10,
+    "supplier": "Tech Supplies Ltd",
+    "description": "Mechanical keyboard with RGB lighting"
+  },
+  {
+    "name": "Notebook",
+    "sku": "NB-3001",
+    "category": "Stationery",
+    "price": 120,
+    "stock": 50,
+    "lowStockThreshold": 15,
+    "supplier": "Office Mart",
+    "description": "A5 ruled notebook"
+  }
+]
